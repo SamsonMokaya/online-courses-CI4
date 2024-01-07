@@ -44,6 +44,7 @@ class UsersModel {
                 'name' => $name,
                 'email' => $email,
                 'password' => $password,
+                'status' => 'active',
             ]);
 
             if ($insertOneResult->getInsertedCount() == 1) {
@@ -55,4 +56,32 @@ class UsersModel {
             return ['error' => 'Error while creating a user: ' . $ex->getMessage()];
         }
     }
+
+    function updateUserStatus($userId, $newStatus) {
+        try {
+            $updateResult = $this->collection->updateOne(
+                ['_id' => new \MongoDB\BSON\ObjectId($userId)],
+                ['$set' => ['status' => $newStatus]]
+            );
+
+            if ($updateResult->getModifiedCount() == 1) {
+                return true;
+            }
+
+            return false;
+        } catch (\MongoDB\Exception\RuntimeException $ex) {
+            return ['error' => 'Error while updating user status: ' . $ex->getMessage()];
+        }
+    }
+
+
+    function getUserById($userId) {
+    try {
+        $user = $this->collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($userId)]);
+        return $user;
+    } catch (\MongoDB\Exception\RuntimeException $ex) {
+        return ['error' => 'Error while fetching user by ID: ' . $ex->getMessage()];
+    }
+}
+
 }

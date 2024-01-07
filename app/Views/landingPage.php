@@ -1,8 +1,23 @@
-<div class="container mt-5">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Subscribe
-    </button>
+
+    <?php $isActive = isset($isActive) ? $isActive : false; ?>
+    <?php if ($loggedIn): ?>
+        <?php if ($isActive): ?>
+            <!-- Form for Deactivating Account -->
+            <form id="deactivateForm" action="/status" method="post">
+                <?= csrf_field() ?>
+                <input type="hidden" name="status" value="inactive">
+                <button type="submit" class="btn btn-danger">Deactivate Account</button>
+            </form>
+        <?php else: ?>
+            <!-- Form for Activating Account -->
+            <form id="activateForm" action="/status" method="post">
+                <?= csrf_field() ?>
+                <input type="hidden" name="status" value="active">
+                <button type="submit" class="btn btn-success">Activate Account</button>
+            </form>
+        <?php endif; ?>
+    <?php endif; ?>
+
     <h2>Available Courses</h2>
 
     <div class="row mt-4">
@@ -18,8 +33,8 @@
                         </div>
                     </div>
                 </div>
-            <?php elseif ($loggedIn): ?>
-                <!-- Display all courses for logged-in users -->
+            <?php elseif ($loggedIn && $isActive): ?>
+                <!-- Display all courses for logged-in users with active status -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -32,35 +47,3 @@
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/subscribe-payment" method="post">
-             <?= csrf_field() ?>
-            <label for="package">Select Package:</label>
-            <select name="amount" id="package" class="form-control" required>
-                <option value="20">$20 Package (10 Courses)</option>
-                <option value="23">$23 Package (14 Courses)</option>
-            </select>
-
-            <label for="phone">Phone Number:</label>
-            <input type="text" name="phone" id="phone" class="form-control" required>
-
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>

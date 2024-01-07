@@ -32,7 +32,7 @@
 <?php endif ?>
 
                     <!-- SignUp Form -->
-                    <form action="/registerUser" method="post">
+                    <form action="/register" method="post">
                         <?= csrf_field() ?>
 
                         <!-- Name -->
