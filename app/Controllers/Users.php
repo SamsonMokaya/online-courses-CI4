@@ -9,9 +9,9 @@ use App\Models\CoursesModel;
 use App\Models\SubscriptionModel;
 
 use LeviZwannah\MpesaSdk\Mpesa; 
-
 class Users extends BaseController
 {
+    
     public function index()
     {
             // Fetch all courses
@@ -36,6 +36,16 @@ class Users extends BaseController
     public function signIn()
     {
         echo view('SignInPage');
+    }
+
+    public function sendResetToken()
+    {
+        echo view('ResetTokenPage');
+    }
+
+    public function resetPassword()
+    {
+        echo view('PasswordResetPage');
     }
 
     public function logout()

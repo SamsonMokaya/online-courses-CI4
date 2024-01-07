@@ -57,6 +57,9 @@
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
                     <!-- End SignUp Form -->
+                    <p class="mt-3">
+                        <a href="/signin">Sign in here.</a>
+                    </p>
                 </div>
             </div>
         </div>

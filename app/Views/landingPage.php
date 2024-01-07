@@ -50,7 +50,7 @@
         <form action="/subscribe-payment" method="post">
              <?= csrf_field() ?>
             <label for="package">Select Package:</label>
-            <select name="package" id="package" class="form-control" required>
+            <select name="amount" id="package" class="form-control" required>
                 <option value="20">$20 Package (10 Courses)</option>
                 <option value="23">$23 Package (14 Courses)</option>
             </select>

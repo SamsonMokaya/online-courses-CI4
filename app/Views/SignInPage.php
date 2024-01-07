@@ -34,7 +34,7 @@
                     <?php endif ?>
 
                     <!-- SignIn Form -->
-                    <form action="/signInUser" method="post">
+                    <form action="/signIn" method="post">
                         <?= csrf_field() ?>
 
                         <!-- Email -->
@@ -53,6 +53,15 @@
                         <button type="submit" class="btn btn-primary">Sign In</button>
                     </form>
                     <!-- End SignIn Form -->
+
+                    <p class="mt-3">
+                        <a href="/signup">Sign up here.</a>
+                    </p>
+
+                    <p class="mt-3">
+                        <a href="/token">Forgot your password?</a>
+                    </p>
+
                 </div>
             </div>
         </div>
